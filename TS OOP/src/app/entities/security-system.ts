@@ -1,4 +1,4 @@
-export class SecuritySystem {
+export abstract class SecuritySystem {
   public securitySystemType: 'modern' | 'amateur' | 'professional' = 'modern';
   public status: 'ok' | 'warning' | 'error' = 'ok';
   public enabled: boolean = false;

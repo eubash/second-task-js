@@ -1,16 +1,16 @@
 // вы можете редактировать этот файл, но его не нужно рефакторить)
 
 import { DBConnection } from './db-connection';
-import { HouseCreator } from './house-creator';
-import { House } from './entities/house';
+import { houseCreator, HouseBuilder } from './house-creator';
+//import { House } from './entities/house';
 
 // --------- user1 --------- //
 
 async function user1ClientFlow() {
   const connection = new DBConnection('localhost', 'root', '1111', 'prod');
 
-  const house1 = HouseCreator.createClassicHouse(2);
-  const house2 = HouseCreator.createModernHouse(4);
+  const house1 = houseCreator.createClassicHouse(2);
+  const house2 = houseCreator.createModernHouse(4);
 
   await connection.save(house1);
   await connection.save(house2);
@@ -24,19 +24,19 @@ async function user1ClientFlow() {
 async function user2ClientFlow() {
   const connection = new DBConnection('localhost', 'root', '1111', 'prod');
 
-  const house1 = HouseCreator.createNeoHouse(1);
+  const house1 = houseCreator.createNeoHouse(1);
 
   // custom
-  const house2 = new House(
+  const house2 = houseCreator.createCustomHouse(
     {count: 2, size: 30, style: 'modern'},
     {size: 60, style: 'neo'}
   );
-  house2.color = 'blue';
+  house2.paint('blue');
   house2.addFloor();
   house2.addFloor();
   house2.addFloor();
 
-  const house3 = HouseCreator.createClassicHouse(3);
+  const house3 = houseCreator.createClassicHouse(3);
 
   await connection.save(house1);
   await connection.save(house2);
