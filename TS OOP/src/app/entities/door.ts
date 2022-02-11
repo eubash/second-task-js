@@ -18,3 +18,7 @@ export class Door extends SecuritySystem {
     // код, который закрывает дверь
   }
 }
+
+export const DoorFactory = {
+  makeDoor : (doorSize: number, doorStyle:'neo' | 'classic' | 'modern', open?: boolean): Door => new Door(doorSize, doorStyle, open)
+};

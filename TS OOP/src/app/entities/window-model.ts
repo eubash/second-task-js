@@ -13,3 +13,7 @@ export class WindowModel {
     // код, который закрывает дверь
   }
 }
+
+export const WindowFactory = {
+  makeWindow : (size: number, style: 'neo' | 'classic' | 'modern', open?: boolean): WindowModel => new WindowModel(size, style, open)
+};
